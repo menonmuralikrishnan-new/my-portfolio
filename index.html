@@ -82,10 +82,23 @@ button { font: inherit; }
 .section-aside { color:var(--muted); font-size:12px; line-height:1.7; margin:0 0 6px; }
 .project-grid { display:grid; grid-template-columns:1.05fr .95fr; column-gap:7%; row-gap:78px; align-items:start; }
 .project-card { display:block; min-width:0; transition:transform .3s ease; }
+.project-card { width:100%; border:0; padding:0; background:none; color:inherit; text-align:left; cursor:pointer; font:inherit; }
 .project-card:hover { transform:translateY(-4px); }
 .project-offset { margin-top:105px; }
 .project-wide { grid-column:1 / -1; width:78%; margin-left:11%; }
 .project-art { height:350px; position:relative; overflow:hidden; isolation:isolate; transition:transform .5s cubic-bezier(.2,.7,.2,1); }
+.project-art.has-media:after { display:none; }
+.project-art.has-media > .project-media { visibility:visible; }
+.project-media { position:absolute; inset:0; z-index:1; overflow:hidden; background:#171312; }
+.project-media:after { content:""; position:absolute; inset:0; z-index:2; background:linear-gradient(135deg,#17131218 25%,#1713128c 100%); pointer-events:none; }
+.project-media img,.project-media video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.04); transition:opacity .8s ease,transform 5s ease; filter:saturate(.82) contrast(1.04); }
+.project-media img.is-active,.project-media video.is-active { opacity:1; transform:scale(1); }
+.project-media .media-label { position:absolute; z-index:3; left:20px; bottom:18px; color:var(--champagne-light); font:9px var(--mono); letter-spacing:.12em; text-transform:uppercase; text-shadow:0 1px 14px #000; }
+.dialog-media { height:230px; position:relative; overflow:hidden; margin:0 34px 6px; background:#171312; }
+.dialog-media:after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,#17131212,#17131266); }
+.dialog-media img,.dialog-media video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .7s ease; }
+.dialog-media img.is-active,.dialog-media video.is-active { opacity:1; }
+.dialog-media .media-label { position:absolute; z-index:2; left:16px; bottom:13px; color:var(--champagne-light); font:9px var(--mono); letter-spacing:.1em; }
 .project-card:hover .project-art { transform:translateY(-5px); }
 .art-food { background:var(--champagne); }
 .art-ring { position:absolute; width:250px; height:250px; border:1px solid #35241f6b; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); }
@@ -117,6 +130,46 @@ button { font: inherit; }
 .project-summary { max-width:440px; color:var(--muted); font-size:12px; line-height:1.8; margin:12px 0 0; }
 .work-footnote { border-top:1px solid var(--line); padding-top:18px; margin:78px 0 0; font-size:8px; color:var(--muted); letter-spacing:.04em; }
 .legacy-projects, .legacy-work-footnote { display:none; }
+.art-news { background:linear-gradient(135deg,#4a3027 0 58%,#bd572d 58%); color:var(--champagne-light); }
+.news-window { position:absolute; left:12%; right:12%; top:18%; bottom:16%; background:var(--paper); color:var(--ink); padding:20px; box-shadow:14px 14px 0 #35241f35; }
+.news-window:before { content:"LIVE  /  CURATED"; display:block; color:var(--amber); font:8px var(--mono); letter-spacing:.12em; border-bottom:1px solid var(--line); padding-bottom:10px; }
+.news-lines { margin-top:18px; width:82%; height:12px; background:var(--mocha); box-shadow:0 24px 0 var(--mocha),0 48px 0 var(--amber),0 72px 0 var(--mocha); opacity:.82; }
+.news-window span { position:absolute; right:18px; bottom:14px; font:8px var(--mono); color:var(--muted); }
+.art-rail { background:#e7d1a4; color:#35241f; }
+.rail-map { position:absolute; inset:16% 10%; }
+.rail-map:before,.rail-map:after { content:""; position:absolute; border:3px solid #35241f; border-radius:50%; transform:rotate(25deg); }
+.rail-map:before { inset:8% 20% 15% 5%; border-right-color:transparent; }
+.rail-map:after { inset:25% 4% 3% 32%; border-left-color:transparent; }
+.rail-stop { position:absolute; width:13px; height:13px; border-radius:50%; background:var(--amber); border:3px solid #35241f; z-index:2; }
+.rail-stop.one { left:13%; top:34%; }.rail-stop.two { left:47%; top:18%; }.rail-stop.three { right:10%; top:53%; }.rail-stop.four { left:57%; bottom:4%; }
+.art-topology { background:#211b19; color:var(--champagne-light); }
+.topology-line { position:absolute; height:1px; background:var(--amber-light); transform-origin:left; }
+.topology-line.one { width:46%; left:22%; top:44%; transform:rotate(-28deg); }.topology-line.two { width:43%; left:35%; top:48%; transform:rotate(28deg); }.topology-line.three { width:31%; left:24%; top:44%; transform:rotate(82deg); }.topology-line.four { width:34%; left:52%; top:49%; transform:rotate(96deg); }
+.topology-node { position:absolute; width:27px; height:27px; border-radius:50%; background:var(--amber); border:5px solid var(--champagne-light); box-shadow:0 0 0 8px #bd572d33; }.topology-node.one { left:17%; top:34%; }.topology-node.two { left:45%; top:18%; }.topology-node.three { right:15%; top:37%; }.topology-node.four { left:45%; bottom:17%; }
+.art-climber { background:linear-gradient(#4a3027 0 70%,#bd572d 70%); color:var(--champagne-light); }
+.climb-platform { position:absolute; left:13%; right:13%; bottom:22%; height:10px; background:var(--champagne); box-shadow:62px -68px 0 -2px var(--champagne),-45px -128px 0 -2px var(--champagne),110px -180px 0 -2px var(--champagne); }
+.climb-player { position:absolute; left:48%; bottom:25%; width:25px; height:50px; background:var(--amber-light); border-radius:12px 12px 5px 5px; transform:rotate(-17deg); }.climb-player:before { content:""; position:absolute; width:20px; height:20px; border-radius:50%; background:var(--champagne-light); top:-18px; left:3px; }
+.art-expense { background:linear-gradient(135deg,#35241f,#bd572d); color:var(--champagne-light); }
+.expense-window { position:absolute; inset:15% 10%; background:var(--paper); color:var(--ink); padding:20px; }.expense-window:before { content:"BALANCE  ₹ 48,260"; display:block; font:12px var(--mono); color:var(--amber); border-bottom:1px solid var(--line); padding-bottom:12px; }.expense-bars { display:flex; align-items:flex-end; gap:10px; height:115px; margin-top:28px; border-bottom:1px solid var(--line); }.expense-bars i { display:block; flex:1; background:var(--amber); }.expense-bars i:nth-child(1){height:38%}.expense-bars i:nth-child(2){height:67%}.expense-bars i:nth-child(3){height:48%}.expense-bars i:nth-child(4){height:84%}.expense-bars i:nth-child(5){height:58%;background:var(--mocha)}
+.project-grid .project-card:nth-child(1) .project-art { background:linear-gradient(135deg,#4a3027 0 58%,#bd572d 58%); }
+.project-grid .project-card:nth-child(1) .project-art:after { content:"RSS  →  TELEGRAM\A\A  HEADLINE 01\A  HEADLINE 02\A  HEADLINE 03"; white-space:pre; position:absolute; left:12%; right:12%; top:17%; bottom:15%; padding:22px; background:var(--paper); color:var(--ink); font:11px/2 var(--mono); box-shadow:14px 14px 0 #35241f35; }
+.project-grid .project-card:nth-child(2) .project-art { background:#e7d1a4; }
+.project-grid .project-card:nth-child(2) .project-art:after { content:"●────●────●\A  RAILWAY NETWORK\A────●────●"; white-space:pre; position:absolute; inset:24% 12%; color:#35241f; font:16px/2.5 var(--mono); transform:rotate(-7deg); }
+.project-grid .project-card:nth-child(3) .project-art { background:#211b19; }
+.project-grid .project-card:nth-child(3) .project-art:after { content:"●────●────●\A \A       ●\A\A  TOPOLOGY MONITOR"; white-space:pre; position:absolute; inset:19% 20%; color:var(--amber-light); font:18px/1.7 var(--mono); }
+.project-grid .project-card:nth-child(4) .project-art { background:linear-gradient(#4a3027 0 70%,#bd572d 70%); }
+.project-grid .project-card:nth-child(4) .project-art:after { content:"      ○\A     /|\\\A     / \\\A  ─────────"; white-space:pre; position:absolute; left:34%; top:17%; color:var(--champagne-light); font:26px/1.1 var(--mono); }
+.project-grid .project-card:nth-child(5) .project-art { background:linear-gradient(135deg,#35241f,#bd572d); }
+.project-grid .project-card:nth-child(5) .project-art:after { content:"BALANCE  ₹ 48,260\A\A  ▂  ▅  ▃  ▇  ▅"; white-space:pre; position:absolute; left:10%; right:10%; top:18%; bottom:18%; padding:24px; background:var(--paper); color:var(--amber); font:14px/2.8 var(--mono); }
+.project-grid .project-art > *:not(.art-number):not(.art-caption) { visibility:hidden; }
+.project-grid .project-art:after { z-index:1; }
+.project-grid .project-art .art-number,.project-grid .project-art .art-caption { z-index:2; }
+.project-grid .project-art.has-media > .project-media { visibility:visible; }
+.project-media img,.project-media video,.dialog-media img,.dialog-media video { object-fit:contain; transform:scale(1); background:#0d1016; }
+.project-media .media-label,.dialog-media .media-label { display:none; }
+.dialog-media { height:min(52vw,460px); min-height:260px; }
+.project-dialog { width:min(900px,calc(100% - 32px)); max-height:calc(100vh - 32px); overflow:auto; border:1px solid var(--line); background:var(--paper); color:var(--ink); padding:0; box-shadow:0 24px 80px #35241f44; }.project-dialog::backdrop { background:#17131299; backdrop-filter:blur(4px); }.dialog-inner { padding:34px; }.dialog-top { display:flex; justify-content:space-between; align-items:flex-start; gap:24px; }.dialog-top h3 { font:500 clamp(2rem,5vw,3.6rem)/1 var(--serif); letter-spacing:-.05em; margin:10px 0 0; }.dialog-top h3 em { color:var(--amber); }.dialog-close { border:1px solid var(--line); background:transparent; color:var(--ink); border-radius:50%; width:36px; height:36px; font-size:22px; cursor:pointer; }.dialog-copy { color:var(--muted); font-size:14px; line-height:1.8; max-width:760px; margin:25px 0; }.dialog-link { display:inline-flex; align-items:center; gap:18px; padding:15px 18px; background:var(--mocha); color:var(--champagne-light); font:10px var(--mono); letter-spacing:.05em; }.dialog-link:hover { background:var(--amber); }
+.project-dialog .cursor-dot,.project-dialog .cursor-ring { display:block; position:fixed; pointer-events:none; z-index:1000; }
 .credentials-section, .blog-section { padding-top:120px; padding-bottom:120px; }
 .credentials-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
 .credential-card { border:1px solid var(--line); padding:30px; min-height:245px; }
@@ -143,6 +196,7 @@ html[data-theme="dark"] .about-section .text-link { border-color:#ead6ad88; }
 .skill-cloud { display:flex; flex-wrap:wrap; gap:8px; margin:28px 0 35px; }
 .skill-cloud span { border:1px solid #35241f44; border-radius:30px; padding:10px 13px; font:8px var(--mono); letter-spacing:.03em; }
 .text-link { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #35241f66; padding:14px 0; font-size:11px; }
+.about-section .text-link { display:none; }
 .text-link span { font-weight:700; }
 html[data-theme="dark"] .about-right > p:not(.about-lead) { color:var(--champagne-light); }
 html[data-theme="dark"] .text-link { border-color:rgba(241,221,194,.4); }
@@ -156,7 +210,7 @@ html[data-theme="dark"] .text-link { border-color:rgba(241,221,194,.4); }
 .process-item p { max-width:320px; color:var(--muted); font-size:11px; line-height:1.7; margin:0; }
 .process-symbol { color:var(--amber); font-size:21px; justify-self:end; }
 .contact-section { background:var(--mocha); color:var(--champagne-light); padding-top:35px; padding-bottom:25px; }
-.contact-top { display:flex; justify-content:space-between; gap:16px; font:12px var(--mono); letter-spacing:.06em; color:#b9a18e; }
+.contact-top { display:flex; justify-content:space-between; gap:16px; font:10px var(--mono); letter-spacing:.06em; color:#b9a18e; }
 .contact-bottom { display:flex; justify-content:center; gap:16px; font:14px var(--mono); letter-spacing:.06em; color:var(--champagne-light); }
 .copyryt { display:flex; justify-content:flex-end; width:100%; margin-top:18px; font:9px var(--mono); letter-spacing:.04em; color:#b9a18e; text-align:right; }
 .contact-main { padding:115px 0 120px; max-width:900px; }
@@ -315,7 +369,7 @@ body.cursor-ready .cursor-dot,body.cursor-ready .cursor-ring { opacity:1; }
 .ticker { transform:rotate(-1.4deg) scale(1.04); margin-top:-2px; }
 .ticker-track { animation-duration:24s; }
 .interstitial-word { background:var(--mocha-2); color:var(--champagne); padding:75px 5% 30px; overflow:hidden; }
-.interstitial-word > p { font-size:9px; letter-spacing:.12em; color:#c1a995; }
+.interstitial-word > p { font-size:9px; letter-spacing:.12em; color:var(--champagne); }
 .interstitial-track {
   display: flex;
   align-items: center;
@@ -344,6 +398,8 @@ body.cursor-ready .cursor-dot,body.cursor-ready .cursor-ring { opacity:1; }
 .about-section:before { content:"✳"; position:absolute; right:5%; top:8%; color:var(--amber); font-size:clamp(2rem,5vw,5rem); animation:spin 28s linear infinite; }
 html[data-theme="dark"] .about-section:before { color:var(--amber-light); }
 html[data-theme="dark"] .interstitial-word { background:var(--amber); color:var(--mocha); }
+html[data-theme="dark"] .interstitial-word > p,
+html[data-theme="dark"] .interstitial-word .interstitial-bottom { color:#fff; }
 html[data-theme="dark"] .interstitial-word .interstitial-outline { -webkit-text-stroke-color:var(--mocha); }
 html[data-theme="dark"] .interstitial-track i { color:var(--mocha); }
 .process-item { position:relative; overflow:hidden; }
@@ -427,27 +483,27 @@ html[data-theme="dark"] .interstitial-track i { color:var(--mocha); }
       <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> 01 / THE PLAYGROUND</p><h2>My<em> Projects.</em></h2></div><p class="section-aside">A few experiments, ideas<br>and things made real.</p></div>
       <div class="project-grid">
         <a class="project-card project-large" href="https://github.com/menonmuralikrishnan-new/news-telegram-bot" target="_blank" rel="noreferrer">
-          <div class="project-art art-data"><div class="data-grid"></div><div class="data-label">NEWS,<br>CURATED<span>↗</span></div><div class="data-wave"></div><div class="art-number">01</div><span class="art-caption mono">PYTHON · TELEGRAM</span></div>
+          <div class="project-art art-data has-media"><div class="project-media" data-media="news-bot"><img src="Images/news-bot/WhatsApp%20Image%202026-11-11%20at%2022.53.11.jpeg" alt="News Telegram Bot message preview" class="is-active"><img src="Images/news-bot/WhatsApp%20Image%202026-11-11%20at%2022.53.21.jpeg" alt="News Telegram Bot second message preview"><span class="media-label">LIVE PREVIEW · NEWS DIGEST</span></div><div class="art-number">01</div><span class="art-caption mono">PYTHON · TELEGRAM</span></div>
           <div class="project-info"><div><span class="project-type mono">PYTHON · RSS · AUTOMATION</span><h3>News <em>Telegram Bot</em></h3></div><span class="project-arrow">↗</span></div>
           <p class="project-summary">A news-processing pipeline that fetches, filters, ranks, and selects articles before delivering curated updates to Telegram.</p>
         </a>
         <a class="project-card project-offset" href="https://github.com/menonmuralikrishnan-new/railway-network-operations-backend" target="_blank" rel="noreferrer">
-          <div class="project-art art-systems"><div class="system-circle sc-one"></div><div class="system-circle sc-two"></div><div class="system-circle sc-three"></div><div class="system-center">RAILWAY<br>NETWORK OPS</div><div class="art-number">02</div><span class="art-caption mono">NODE.JS · MYSQL</span></div>
+          <div class="project-art art-systems has-media"><div class="project-media" data-media="railip"><img src="Images/railip/WhatsApp%20Image%202026-07-30%20at%2011.40.16.jpeg" alt="Railway network information screen" class="is-active"><img src="Images/railip/WhatsApp%20Image%202026-07-30%20at%2011.40.26.jpeg" alt="Railway network operations screen"><img src="Images/railip/WhatsApp%20Image%202026-07-30%20at%2011.40.36.jpeg" alt="Railway network inventory screen"><img src="Images/railip/WhatsApp%20Image%202026-07-30%20at%2011.40.46.jpeg" alt="Railway network dashboard screen"><span class="media-label">LIVE PREVIEW · RAILWAY NETWORK OPS</span></div><div class="art-number">02</div><span class="art-caption mono">NODE.JS · MYSQL</span></div>
           <div class="project-info"><div><span class="project-type mono">EXPRESS · MYSQL · REST API</span><h3>Railway Network <em>Operations</em></h3></div><span class="project-arrow">↗</span></div>
           <p class="project-summary">An authenticated network-operations dashboard backend for managing railway LAN, loopback, terminal, and WAN circuit inventory.</p>
         </a>
         <a class="project-card project-large" href="https://github.com/menonmuralikrishnan-new/sdn-topology-change-detector" target="_blank" rel="noreferrer">
-          <div class="project-art art-food"><div class="art-ring"></div><div class="art-orbit-label">NETWORK<br>MONITORING</div><div class="food-shape"><span>+</span></div><div class="art-number">03</div><span class="art-caption mono">POX + MININET</span></div>
+          <div class="project-art art-food has-media"><div class="project-media" data-media="sdn-topology"><img src="Images/sdn-topology/ChatGPT%20Image%20Nov%2011,%202026,%2011_33_56%20PM.png" alt="SDN topology detector terminal output" class="is-active"><img src="Images/sdn-topology/ChatGPT%20Image%20Nov%2011,%202026,%2011_34_13%20PM.png" alt="SDN topology detector event output"><span class="media-label">LIVE PREVIEW · TOPOLOGY EVENTS</span></div><div class="art-number">03</div><span class="art-caption mono">POX + MININET</span></div>
           <div class="project-info"><div><span class="project-type mono">PYTHON · SOFTWARE-DEFINED NETWORKING</span><h3>SDN Topology <em>Change Detector</em></h3></div><span class="project-arrow">↗</span></div>
           <p class="project-summary">A POX and Mininet-based monitoring script that detects and logs real-time topology changes in SDN environments.</p>
         </a>
         <a class="project-card project-offset" href="https://github.com/menonmuralikrishnan-new/37_climber" target="_blank" rel="noreferrer">
-          <div class="project-art art-data"><div class="data-grid"></div><div class="data-label">CLIMB<br>HIGHER<span>↗</span></div><div class="data-wave"></div><div class="art-number">04</div><span class="art-caption mono">PYGAME IMPLEMENTATION</span></div>
+          <div class="project-art art-data has-media"><div class="project-media" data-media="ladder"><video src="Images/ladder/after_edit.mp4" autoplay muted loop playsinline class="is-active"></video><span class="media-label">PLAYING · 37 CLIMBER</span></div><div class="art-number">04</div><span class="art-caption mono">PYGAME IMPLEMENTATION</span></div>
           <div class="project-info"><div><span class="project-type mono">PYTHON · GAME DEVELOPMENT</span><h3>37 <em>Climber</em></h3></div><span class="project-arrow">↗</span></div>
           <p class="project-summary">A Python/Pygame implementation of Climber focused on interactive gameplay and game-loop fundamentals.</p>
         </a>
         <a class="project-card project-wide" href="#contact">
-          <div class="project-art art-systems"><div class="system-circle sc-one"></div><div class="system-circle sc-two"></div><div class="system-circle sc-three"></div><div class="system-center">MONEY<br>IN MOTION</div><div class="art-number">05</div><span class="art-caption mono">FULL-STACK WEB APPLICATION</span></div>
+          <div class="project-art art-systems has-media"><div class="project-media" data-media="expense-management"><img src="Images/expense-management/Screenshot%202026-11-11%20232239.png" alt="Expense management login screen" class="is-active"><img src="Images/expense-management/Screenshot%202026-11-11%20232250.png" alt="Expense management dashboard screen"><span class="media-label">LIVE PREVIEW · EXPENSEHUB</span></div><div class="art-number">05</div><span class="art-caption mono">FULL-STACK WEB APPLICATION</span></div>
           <div class="project-info"><div><span class="project-type mono">REACT · NODE.JS · MYSQL</span><h3>Expense <em>Tracker</em></h3></div><span class="project-arrow">↗</span></div>
           <p class="project-summary">A full-stack personal-finance application built with React, Node.js, Vite, and MySQL for managing income and expenses.</p>
         </a>
@@ -458,13 +514,10 @@ html[data-theme="dark"] .interstitial-track i { color:var(--mocha); }
     <section class="interstitial-word" aria-label="Ideas become things"><p class="mono">A WORK IN PROGRESS, ALWAYS.</p><div class="interstitial-track"><span>IDEAS</span><i>✳</i><span class="interstitial-outline">INTO</span><span>THINGS.</span></div><div class="interstitial-bottom"><span>THINK WILDLY.</span><span>BUILD THOUGHTFULLY. ↗</span></div></section>
     <section id="about" class="about-section color-stage">
       <div class="about-left"><p class="eyebrow"><span class="eyebrow-line"></span> 02 / A LITTLE ABOUT ME</p><h2>Too curious<br>to leave things<br><em>alone.</em></h2></div>
-      <div class="about-right"><p>I'd say I'm a pretty curious person, and I tend to get invested in the things that interest me. I rarely like stopping at just knowing how something works. I want to get into it, try things out, understand what's happening behind the scenes and see if there's a better way of doing it. More often than not, one question leads to another, and before I know it, I've gone down a rabbit hole I never planned on exploring.
+      <div class="about-right"><p>I'm a curious person who tends to get invested in the things that interest me. I rarely stop at just knowing how something works; I want to get into it, experiment, understand what's happening behind the scenes and see if there's a better way. One question usually leads to another, and before I know it, I've gone down a rabbit hole I never planned on exploring.
 
-I'm someone who likes having something to work towards. It could be a project, a new skill, an idea I've been sitting on or just something I want to get better at. I'm also a little particular about things. I usually know when something doesn't feel quite right, and I'm not afraid to go back, rethink it and try again until it does. I enjoy the creative side of things just as much as the logical side, and I like keeping things simple without losing what makes them interesting.
+I like having something to work towards, whether it's a project, a new skill or an idea I've been meaning to try. I'm also a little particular about things — I know when something doesn't feel quite right, and I'm happy to rethink it until it does. I enjoy the creative side as much as the logical, and like keeping things simple without making them boring. I don't take everything too seriously either; I enjoy a good challenge, a bit of humour and occasionally getting carried away with an idea. There's probably more I'd like to explore than I have time for, but that's part of the fun.</p>
 
-I also don't think everything needs to be taken too seriously. I enjoy a good challenge, a bit of humour, trying things just to see where they lead, and occasionally getting carried away with an idea. I probably have more things I'd like to explore than I have time for, but I suppose that's part of the fun.</p>
-
-        <a class="text-link" href="#contact-links">Have a good problem? <span>Let’s talk ↗</span></a>
       </div>
     </section>
 
@@ -520,7 +573,7 @@ I also don't think everything needs to be taken too seriously. I enjoy a good ch
     </section>
 
     <section class="process-section section-pad color-stage">
-      <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> 05 / HOW I WORK</p><h2>Less noise.<br><em>More meaning.</em></h2></div><p class="section-aside">A simple process, open<br>to happy accidents.</p></div>
+      <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> 05 / HOW I WORK</p><h2>Curiosity<br><em>into creation.</em></h2></div><p class="section-aside">A simple process, open<br>to happy accidents.</p></div>
       <div class="process-list">
         <div class="process-item"><span class="process-no mono">01</span><h3>Get curious.</h3><p>Understand before you solve. There's usually more to the problem than meets the eye.</p><span class="process-symbol">↗</span></div>
         <div class="process-item"><span class="process-no mono">02</span><h3>Make a mess.</h3><p>Try things out, question your assumptions, and learn along the way.</p><span class="process-symbol">✳</span></div>
@@ -532,6 +585,15 @@ I also don't think everything needs to be taken too seriously. I enjoy a good ch
       <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> 06 / BLOG</p><h2>Notes in<br><em>progress.</em></h2></div><p class="section-aside">A place for future writings</p></div>
       <div class="blog-placeholder"><div><span class="project-type mono">COMING SOON</span><h3>Things I am building,<br>learning, and figuring out.</h3></div><span class="project-arrow">↗</span></div>
     </section>
+
+    <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-inner">
+        <div class="dialog-top"><div><span class="project-type mono" id="dialog-type"></span><h3 id="dialog-title"></h3></div><button class="dialog-close" type="button" aria-label="Close project details">×</button></div>
+        <div class="dialog-media" id="dialog-media" aria-label="Project feature preview"></div>
+        <p class="dialog-copy" id="dialog-copy"></p>
+        <a class="dialog-link" id="dialog-link" href="#" target="_blank" rel="noreferrer">OPEN GITHUB REPOSITORY ↗</a>
+      </div>
+    </dialog>
 
     <section id="contact" class="contact-section section-pad color-stage">
       <div class="contact-top mono"><span>07 / Connect</span><span>GOOD THINGS START WITH A HELLO</span></div>
@@ -610,6 +672,120 @@ nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
   menuButton.setAttribute("aria-expanded", "false");
   menuButton.setAttribute("aria-label", "Open menu");
 }));
+
+// Project cards open a quick brief first; the repository link is inside the brief.
+const projectDialog = document.querySelector("#project-dialog");
+const dialogType = document.querySelector("#dialog-type");
+const dialogTitle = document.querySelector("#dialog-title");
+const dialogCopy = document.querySelector("#dialog-copy");
+const dialogLink = document.querySelector("#dialog-link");
+const dialogMedia = document.querySelector("#dialog-media");
+let dialogMediaTimer;
+const cursorVisuals = [...document.querySelectorAll(".cursor-dot, .cursor-ring")];
+const restoreCursor = () => cursorVisuals.forEach(cursor => document.body.appendChild(cursor));
+const projectDetails = [
+  {
+    type: "PYTHON · RSS · AUTOMATION",
+    title: "News Telegram Bot",
+    copy: "A Python automation tool that gathers news from RSS feeds, filters and ranks the results, then sends a cleaner, curated selection to Telegram instead of a noisy stream of links. It is useful for turning several updates into one focused digest, with the processing happening before the message reaches the reader.",
+    repo: "https://github.com/menonmuralikrishnan-new/news-telegram-bot",
+    media: [
+      ["image", "Images/news-bot/WhatsApp%20Image%202026-11-11%20at%2022.53.11.jpeg", "News Telegram Bot message preview"],
+      ["image", "Images/news-bot/WhatsApp%20Image%202026-11-11%20at%2022.53.21.jpeg", "News Telegram Bot second message preview"]
+    ]
+  },
+  {
+    type: "EXPRESS · MYSQL · REST API",
+    title: "Railway Network Operations",
+    copy: "An authenticated Node.js and MySQL backend for railway network operations. It keeps LAN, loopback, terminal, and WAN circuit information organised and available through a REST API. The project is designed around the practical problem of tracking infrastructure consistently across railway locations and network links.",
+    repo: "https://github.com/menonmuralikrishnan-new/railway-network-operations-backend",
+    media: [
+      ["image", "Images/railip/WhatsApp%20Image%202026-07-30%20at%2011.40.16.jpeg", "Railway network information screen"],
+      ["image", "Images/railip/WhatsApp%20Image%202026-07-30%20at%2011.40.26.jpeg", "Railway network operations screen"],
+      ["image", "Images/railip/WhatsApp%20Image%202026-07-30%20at%2011.40.36.jpeg", "Railway network inventory screen"],
+      ["image", "Images/railip/WhatsApp%20Image%202026-07-30%20at%2011.40.46.jpeg", "Railway network dashboard screen"]
+    ]
+  },
+  {
+    type: "PYTHON · SOFTWARE-DEFINED NETWORKING",
+    title: "SDN Topology Change Detector",
+    copy: "A POX and Mininet monitoring project that watches a software-defined network and records topology changes as they happen, making network behaviour easier to inspect and debug. When switches or links change, the detector provides a simple event trail for understanding what changed in the simulated network.",
+    repo: "https://github.com/menonmuralikrishnan-new/sdn-topology-change-detector",
+    media: [
+      ["image", "Images/sdn-topology/ChatGPT%20Image%20Nov%2011,%202026,%2011_33_56%20PM.png", "SDN topology detector terminal output"],
+      ["image", "Images/sdn-topology/ChatGPT%20Image%20Nov%2011,%202026,%2011_34_13%20PM.png", "SDN topology detector event output"]
+    ]
+  },
+  {
+    type: "PYTHON · GAME DEVELOPMENT",
+    title: "37 Climber",
+    copy: "A Python and Pygame implementation of a climbing game, built around interactive controls, platform movement, collision handling, and the fundamentals of a real-time game loop. The project focuses on making a small playable system feel responsive while keeping the game logic understandable and easy to extend.",
+    repo: "https://github.com/menonmuralikrishnan-new/37_climber",
+    media: [["video", "Images/ladder/after_edit.mp4", "37 Climber gameplay"]]
+  },
+  {
+    type: "REACT · NODE.JS · MYSQL",
+    title: "Expense Tracker",
+    copy: "A full-stack personal-finance application for recording income and expenses, built with React and Vite on the frontend, Node.js on the backend, and MySQL for persistent data. It gives users one place to add transactions, review their spending, and keep a clearer picture of their day-to-day money flow.",
+    repo: "https://github.com/menonmuralikrishnan-new/WT-ExpenseTracker",
+    media: [
+      ["image", "Images/expense-management/Screenshot%202026-11-11%20232239.png", "Expense management login screen"],
+      ["image", "Images/expense-management/Screenshot%202026-11-11%20232250.png", "Expense management dashboard screen"]
+    ]
+  }
+];
+const addMediaItem = (container, item, active = false) => {
+  const [kind, source, alt] = item;
+  const media = document.createElement(kind === "video" ? "video" : "img");
+  media.src = source;
+  media.className = active ? "is-active" : "";
+  if (kind === "video") {
+    media.autoplay = true;
+    media.muted = true;
+    media.loop = true;
+    media.playsInline = true;
+  } else {
+    media.alt = alt;
+  }
+  container.appendChild(media);
+  return media;
+};
+const startMediaSlideshow = (container, items) => {
+  if (!container || items.length < 2 || items[0][0] === "video") return;
+  let active = 0;
+  return window.setInterval(() => {
+    const slides = [...container.querySelectorAll("img")];
+    slides[active]?.classList.remove("is-active");
+    active = (active + 1) % slides.length;
+    slides[active]?.classList.add("is-active");
+  }, 2800);
+};
+document.querySelectorAll(".project-media[data-media]").forEach(media => {
+  startMediaSlideshow(media, [...media.querySelectorAll("img")].map(() => ["image"]));
+});
+document.querySelectorAll(".project-card").forEach((card, index) => {
+  card.addEventListener("click", event => {
+    event.preventDefault();
+    const project = projectDetails[index];
+    if (!project || !projectDialog) return;
+    dialogType.textContent = project.type;
+    dialogTitle.textContent = project.title;
+    dialogCopy.textContent = project.copy;
+    dialogLink.href = project.repo;
+    window.clearInterval(dialogMediaTimer);
+    dialogMedia.replaceChildren();
+    project.media?.forEach((item, itemIndex) => addMediaItem(dialogMedia, item, itemIndex === 0));
+    if (project.media?.length > 1) dialogMediaTimer = startMediaSlideshow(dialogMedia, project.media);
+    // A native dialog sits in the browser's top layer, so keep the custom cursor in that layer too.
+    cursorVisuals.forEach(cursor => projectDialog.appendChild(cursor));
+    projectDialog.showModal();
+  });
+});
+document.querySelector(".dialog-close")?.addEventListener("click", () => projectDialog?.close());
+projectDialog?.addEventListener("close", restoreCursor);
+projectDialog?.addEventListener("click", event => {
+  if (event.target === projectDialog) projectDialog.close();
+});
 
 // Gentle reveal on scroll; content remains visible if the browser lacks support.
 if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
